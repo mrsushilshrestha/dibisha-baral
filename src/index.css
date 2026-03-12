@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 150 40% 15%;
+
+    --card: 40 30% 95%;
+    --card-foreground: 150 40% 15%;
+
+    --popover: 40 33% 97%;
+    --popover-foreground: 150 40% 15%;
+
+    --primary: 153 42% 30%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 40 20% 90%;
+    --secondary-foreground: 150 40% 15%;
+
+    --muted: 40 15% 92%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 38 65% 47%;
+    --accent-foreground: 40 33% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 20% 85%;
+    --input: 40 20% 85%;
+    --ring: 153 42% 30%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 150 20% 12%;
+    --sidebar-foreground: 40 33% 97%;
+    --sidebar-primary: 38 65% 47%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 150 30% 20%;
+    --sidebar-accent-foreground: 40 33% 97%;
+    --sidebar-border: 150 20% 20%;
+    --sidebar-ring: 38 65% 47%;
+
+    /* Custom tokens */
+    --forest: 153 42% 30%;
+    --forest-dark: 153 50% 20%;
+    --forest-light: 153 30% 45%;
+    --amber: 38 65% 47%;
+    --amber-light: 38 60% 60%;
+    --cream: 40 33% 97%;
+    --cream-dark: 40 25% 92%;
+    --warm-gray: 30 10% 40%;
+  }
+
+  .dark {
+    --background: 150 30% 8%;
+    --foreground: 40 33% 95%;
+    --card: 150 25% 12%;
+    --card-foreground: 40 33% 95%;
+    --popover: 150 25% 12%;
+    --popover-foreground: 40 33% 95%;
+    --primary: 38 65% 47%;
+    --primary-foreground: 150 30% 8%;
+    --secondary: 150 20% 18%;
+    --secondary-foreground: 40 33% 95%;
+    --muted: 150 15% 18%;
+    --muted-foreground: 40 15% 65%;
+    --accent: 153 42% 30%;
+    --accent-foreground: 40 33% 97%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 150 15% 22%;
+    --input: 150 15% 22%;
+    --ring: 38 65% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24 py-16 md:py-24;
+  }
+  .gradient-forest {
+    background: linear-gradient(135deg, hsl(var(--forest)) 0%, hsl(var(--forest-dark)) 100%);
+  }
+  .gradient-amber {
+    background: linear-gradient(135deg, hsl(var(--amber)) 0%, hsl(var(--amber-light)) 100%);
+  }
+  .gradient-hero-overlay {
+    background: linear-gradient(180deg, hsla(var(--forest-dark), 0.7) 0%, hsla(var(--forest), 0.5) 50%, hsla(var(--forest-dark), 0.8) 100%);
+  }
+}
