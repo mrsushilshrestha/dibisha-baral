@@ -9,17 +9,17 @@ export const navLinks = [
 
 export const education = [
   {
-    year: "2022 – Present",
-    title: "M.Sc. Botany",
-    institution: "Tribhuvan University",
-    description: "Specializing in plant taxonomy and ethnobotany with focus on Himalayan flora.",
+    year: "2021 – 2026",
+    title: "Btech in Biotechnology",
+    institution: "Himalayan WhiteHouse International College Putalisadak Kathamndu",
+    description: "Specializing in Cancer Cell",
     icon: "GraduationCap",
   },
   {
-    year: "2018 – 2022",
-    title: "B.Sc. Botany",
-    institution: "Tribhuvan University",
-    description: "Comprehensive study of plant biology, ecology, and conservation.",
+    year: " 2019 - 2021",
+    title: "+2 Bio Science",
+    institution: "Nepal Mega College",
+    // description: "Comprehensive study of plant biology, ecology, and conservation.",
     icon: "BookOpen",
   },
 ];
@@ -27,24 +27,18 @@ export const education = [
 export const training = [
   {
     year: "2024",
-    title: "Plant Tissue Culture Workshop",
-    institution: "Nepal Academy of Science",
-    description: "Hands-on training in micropropagation and in-vitro conservation techniques.",
+    title: "Python Programming for Bioinformatics",
+    institution: "Hacker Hank",
+    description: "Completed training in Python with applications in Bioinformatics and Data Science, including data analysis, automation, and scientific computing techniques.",
     icon: "FlaskConical",
   },
+
   {
-    year: "2023",
-    title: "GIS & Remote Sensing for Ecology",
-    institution: "ICIMOD",
-    description: "Spatial analysis techniques for vegetation mapping and biodiversity assessment.",
-    icon: "Map",
-  },
-  {
-    year: "2023",
-    title: "Herbarium Techniques Certificate",
-    institution: "National Herbarium",
-    description: "Specimen collection, preservation, and digital documentation methods.",
-    icon: "Leaf",
+    year: "2025",
+    title: "Laboratory Safety and Research Training",
+    institution: "Amrit Science Campus",
+    description: "Hands-on training on laboratory safety protocols, proper handling of chemicals and biological materials, and fundamental research practices.",
+    icon: "FlaskConical",
   },
 ];
 
