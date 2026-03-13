@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { projects } from "@/data/siteData";
+import BotanicalDecor from "@/components/BotanicalDecor";
 
 const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
   const ref = useRef(null);
@@ -21,12 +22,12 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
           {project.category}
         </span>
         <h3 className="font-heading text-xl font-bold text-foreground mt-2 mb-3">{project.title}</h3>
-        <p className="font-body text-sm text-muted-foreground mb-4">{project.description}</p>
+        <p className="font-body text-sm text-foreground/75 mb-4">{project.description}</p>
 
         {/* Progress bar */}
         <div className="mb-4">
           <div className="flex justify-between text-xs font-body mb-1">
-            <span className="text-muted-foreground">Progress</span>
+            <span className="text-foreground/60">Progress</span>
             <span className="text-primary font-semibold">{project.progress}%</span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -55,7 +56,8 @@ const Projects = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" className="section-padding bg-background" ref={ref}>
+    <section id="projects" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+      <BotanicalDecor variant="projects" />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

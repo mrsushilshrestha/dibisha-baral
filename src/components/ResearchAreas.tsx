@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Search, Users, Shield, BarChart3 } from "lucide-react";
 import { researchAreas } from "@/data/siteData";
+import BotanicalDecor from "@/components/BotanicalDecor";
 
 const iconMap: Record<string, React.ReactNode> = {
   Search: <Search className="w-6 h-6" />,
@@ -15,7 +16,8 @@ const ResearchAreas = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-muted" ref={ref}>
+    <section className="section-padding bg-muted relative overflow-hidden" ref={ref}>
+      <BotanicalDecor variant="default" />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,15 +35,23 @@ const ResearchAreas = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative bg-card rounded-xl p-6 border border-border"
+              whileHover={{ y: -5 }}
+              className="group relative bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-500 overflow-hidden"
             >
-              <div className="absolute left-0 top-6 bottom-6 w-1 rounded-r-full gradient-forest" />
-              <div className="ml-4">
-                <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center text-primary mb-4">
+              {/* Decorative background accent line */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-bl-full -mr-8 -mt-8 group-hover:bg-accent/10 transition-colors" />
+              
+              <div className="absolute left-0 top-0 bottom-0 w-1.5 gradient-forest opacity-80 group-hover:opacity-100 transition-opacity" />
+              
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-forest mb-6 group-hover:scale-110 group-hover:bg-forest group-hover:text-white transition-all duration-300 shadow-sm">
                   {iconMap[area.icon]}
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{area.title}</h3>
-                <p className="font-body text-sm text-muted-foreground">{area.description}</p>
+                <h3 className="font-heading text-xl font-bold text-foreground mb-3 leading-tight">{area.title}</h3>
+                <div className="w-8 h-1 bg-accent/20 mb-4 rounded-full group-hover:w-16 group-hover:bg-accent/40 transition-all duration-300" />
+                <p className="font-body text-sm text-foreground/80 leading-relaxed font-medium">
+                  {area.description}
+                </p>
               </div>
             </motion.div>
           ))}

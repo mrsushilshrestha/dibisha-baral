@@ -49,7 +49,7 @@ const Gallery = () => {
                 <p className="text-primary-foreground font-heading text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {item.title}
                 </p>
-                <p className="text-primary-foreground/70 font-body text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 mt-1">
+                <p className="text-white font-body text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 mt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                   <MapPin className="w-3 h-3" /> {item.location}
                 </p>
               </div>

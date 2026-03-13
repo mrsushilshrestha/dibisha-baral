@@ -52,6 +52,8 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
   };
 
   const isActive = (href: string) => {
+    // Highlight "Research" nav link on all project detail pages
+    if (href === "#projects" && location.pathname.startsWith("/project")) return true;
     if (href.startsWith("/")) return location.pathname === href;
     return isHome && activeSection === href.replace("#", "");
   };

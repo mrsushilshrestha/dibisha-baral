@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, BookOpen, FlaskConical, Map, Leaf } from "lucide-react";
 import { education, training } from "@/data/siteData";
+import BotanicalDecor from "@/components/BotanicalDecor";
 
 const iconMap: Record<string, React.ReactNode> = {
   GraduationCap: <GraduationCap className="w-5 h-5" />,
@@ -16,7 +17,7 @@ const TimelineItem = ({
   index,
   side,
 }: {
-  item: { year: string; title: string; institution: string; description: string; icon: string };
+  item: { year: string; title: string; institution: string; description?: string; icon: string };
   index: number;
   side: "left" | "right";
 }) => {
@@ -26,23 +27,26 @@ const TimelineItem = ({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      initial={{ opacity: 0, x: side === "left" ? -20 : 20 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.15 }}
-      className="relative flex items-start gap-4 mb-8"
+      className="relative flex items-start gap-6 group mb-10"
     >
-      <div className="flex flex-col items-center flex-shrink-0">
-        <div className="w-10 h-10 rounded-full gradient-forest flex items-center justify-center text-primary-foreground">
+      <div className="flex flex-col items-center flex-shrink-0 relative">
+        <div className="w-12 h-12 rounded-full gradient-forest flex items-center justify-center text-primary-foreground shadow-lg group-hover:scale-110 transition-transform duration-300 z-10 border-4 border-muted">
           {iconMap[item.icon]}
         </div>
-        {/* Vertical connector line */}
-        <div className="w-0.5 flex-1 bg-border mt-2" />
+        {/* Vertical connector line - improved visibility */}
+        <div className="absolute top-12 bottom-[-40px] w-1 bg-gradient-to-b from-forest/30 via-forest/10 to-transparent left-1/2 -translate-x-1/2" />
       </div>
-      <div className="flex-1 pb-2">
-        <span className="text-xs font-body text-accent font-semibold">{item.year}</span>
-        <h4 className="font-heading text-lg font-semibold text-foreground">{item.title}</h4>
-        <p className="font-body text-sm text-primary font-medium">{item.institution}</p>
-        <p className="font-body text-sm text-muted-foreground mt-1">{item.description}</p>
+      <div className="flex-1 bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 shadow-sm hover:shadow-md hover:border-accent/30 transition-all duration-300">
+        <div className="flex justify-between items-start mb-2">
+          <span className="text-xs font-body text-accent font-bold px-2 py-1 bg-accent/10 rounded-full">{item.year}</span>
+        </div>
+        <h4 className="font-heading text-xl font-bold text-foreground leading-tight">{item.title}</h4>
+        <p className="font-body text-sm text-primary font-semibold mt-1 opacity-90">{item.institution}</p>
+        <div className="w-12 h-0.5 bg-accent/30 my-3 rounded-full" />
+        <p className="font-body text-sm text-foreground/80 leading-relaxed italic">{item.description}</p>
       </div>
     </motion.div>
   );
@@ -53,7 +57,8 @@ const Education = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="education" className="section-padding bg-muted" ref={ref}>
+    <section id="education" className="section-padding bg-muted relative overflow-hidden" ref={ref}>
+      <BotanicalDecor variant="education" />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

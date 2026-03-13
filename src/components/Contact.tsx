@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Phone, Mail, Linkedin, MapPin } from "lucide-react";
+import BotanicalDecor from "@/components/BotanicalDecor";
 
 const contactItems = [
   {
@@ -34,7 +35,8 @@ const Contact = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="section-padding bg-muted" ref={ref}>
+    <section id="contact" className="section-padding bg-muted relative overflow-hidden" ref={ref}>
+      <BotanicalDecor variant="contact" />
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +63,7 @@ const Contact = () => {
                 {item.icon}
               </div>
               <div>
-                <p className="font-body text-xs text-muted-foreground uppercase tracking-wider">{item.label}</p>
+                <p className="font-body text-xs text-foreground/60 uppercase tracking-wider">{item.label}</p>
                 <p className="font-body text-sm font-semibold text-foreground">{item.value}</p>
               </div>
             </motion.a>

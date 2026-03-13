@@ -4,14 +4,14 @@ import heroImg from "@/assets/hero-fern.jpg";
 
 const Hero = () => (
   <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-    <img src={heroImg} alt="Tropical fern forest" className="absolute inset-0 w-full h-full object-cover" />
+    <img src={heroImg} alt="Modern biotechnology laboratory with microscope" className="absolute inset-0 w-full h-full object-cover" />
     <div className="absolute inset-0 gradient-hero-overlay" />
     <div className="relative z-10 text-center px-6 max-w-3xl">
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="text-accent font-body text-sm tracking-[0.3em] uppercase mb-4"
+        className="text-white font-body text-sm tracking-[0.3em] uppercase mb-4 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] font-semibold"
       >
          Researcher
       </motion.p>
@@ -19,7 +19,7 @@ const Hero = () => (
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6"
+        className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] leading-tight mb-6"
       >
         Dibisha Baral
       </motion.h1>
@@ -27,7 +27,7 @@ const Hero = () => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="font-body text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-xl mx-auto"
+        className="font-body text-lg md:text-xl text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] mb-10 max-w-xl mx-auto"
       >
         Biotechnology Student | Medicinal Plant Research |Black Turmeric (Curcuma caesia) Antidiabetic Study
       </motion.p>
