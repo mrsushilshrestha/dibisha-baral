@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Clock, Users, Quote } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -16,6 +17,10 @@ const ProjectDetail = () => {
       </div>
     );
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   return (
     <>
@@ -82,7 +87,7 @@ const ProjectDetail = () => {
           </div>
           <div className="bg-card rounded-3xl p-8 md:p-12 border border-border/50 shadow-sm relative overflow-hidden">
             <Quote className="absolute top-8 right-8 w-24 h-24 text-accent/5 -rotate-12" />
-            <p className="font-body text-lg text-foreground/80 leading-relaxed italic relative z-10 text-justify">
+            <p className="font-body text-lg text-foreground/80 leading-relaxed italic relative z-10 text-left md:text-justify">
               {project.abstract}
             </p>
           </div>

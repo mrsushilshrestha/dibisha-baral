@@ -13,8 +13,8 @@ const contactItems = [
   {
     icon: <Mail className="w-5 h-5" />,
     label: "Email",
-    value: "dibisha@email.com",
-    href: "mailto:dibisha@email.com",
+    value: "dibishabaralofficial@gmail.com",
+    href: "mailto:dibishabaralofficial@gmail.com",
   },
   {
     icon: <Linkedin className="w-5 h-5" />,

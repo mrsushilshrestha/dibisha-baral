@@ -113,22 +113,31 @@ const Navbar = ({ solid = false }: { solid?: boolean }) => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden absolute top-16 right-6 w-64 bg-card rounded-xl shadow-2xl border border-border"
           >
-            {navLinks.map((link) => (
-              <button
-                key={link.label}
-                onClick={() => handleNavClick(link.href)}
-                className={`block w-full text-left px-6 py-3 text-sm font-body ${
-                  isActive(link.href) ? "text-primary bg-muted" : "text-foreground"
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+            {/* The little upwards triangle pointer */}
+            <div className="absolute -top-2 right-6 w-4 h-4 bg-card rotate-45 border-t border-l border-border" />
+            
+            <div className="relative z-10 py-3 flex flex-col">
+              <div className="px-6 py-2">
+                <span className="text-xs text-muted-foreground uppercase font-body tracking-wider">Navigation</span>
+              </div>
+              
+              {navLinks.map((link) => (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`block w-full text-left px-6 py-3 text-sm font-body uppercase transition-colors ${
+                    isActive(link.href) ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
