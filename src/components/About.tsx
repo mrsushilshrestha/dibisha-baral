@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import portraitImg from "@/assets/portrait.jpg";
+import portraitImg from "@/assets/portrait.png";
 import BotanicalDecor from "@/components/BotanicalDecor";
 
 const About = () => {
