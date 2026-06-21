@@ -108,12 +108,12 @@ export interface GalleryItem {
 }
 
 export const galleryItems: GalleryItem[] = [
-  { id: 1, src: "", title: "Fern Frond Unfurling",  location: "Langtang National Park",       description: "New growth of a tree fern captured during spring field survey."        },
-  { id: 2, src: "", title: "Himalayan Orchid",       location: "Annapurna Conservation Area", description: "Rare epiphytic orchid found at 2800m elevation."                       },
-  { id: 3, src: "", title: "Forest Floor Ecosystem", location: "Chitwan National Park",       description: "Diverse moss and fungal communities on decaying wood."                 },
-  { id: 4, src: "", title: "Rainforest Canopy",      location: "Eastern Nepal",               description: "Aerial view showing canopy diversity in subtropical forest."           },
-  { id: 5, src: "", title: "Herbarium Specimens",    location: "National Herbarium, Godavari",description: "Pressed botanical specimens prepared for taxonomic study."             },
-  { id: 6, src: "", title: "Wetland Flora",          location: "Koshi Tappu Wildlife Reserve",description: "Water lilies in their natural habitat during monsoon season."          },
+  // { id: 1, src: "", title: "Fern Frond Unfurling",  location: "Langtang National Park",       description: "New growth of a tree fern captured during spring field survey."        },
+  // { id: 2, src: "", title: "Himalayan Orchid",       location: "Annapurna Conservation Area", description: "Rare epiphytic orchid found at 2800m elevation."                       },
+  // { id: 3, src: "", title: "Forest Floor Ecosystem", location: "Chitwan National Park",       description: "Diverse moss and fungal communities on decaying wood."                 },
+  // { id: 4, src: "", title: "Rainforest Canopy",      location: "Eastern Nepal",               description: "Aerial view showing canopy diversity in subtropical forest."           },
+  // { id: 5, src: "", title: "Herbarium Specimens",    location: "National Herbarium, Godavari",description: "Pressed botanical specimens prepared for taxonomic study."             },
+  // { id: 6, src: "", title: "Wetland Flora",          location: "Koshi Tappu Wildlife Reserve",description: "Water lilies in their natural habitat during monsoon season."          },
 ];
 
 // =============================================================================
