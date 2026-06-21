@@ -2,12 +2,22 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { X, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import { galleryItems } from "@/data/siteData";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
+import gallery1 from "@/assets/img0.jpeg"
+import gallery2 from "@/assets/img01.jpeg";
+import gallery3 from "@/assets/img2.jpeg";
+import gallery4 from "@/assets/img3.jpeg";
+import gallery5 from "@/assets/img4.jpeg";
+import gallery6 from "@/assets/img5.jpeg";
+import gallery6 from "@/assets/img6.jpeg";
+import gallery6 from "@/assets/img7.jpeg";
+import gallery6 from "@/assets/img8.jpeg";
+import gallery6 from "@/assets/img9.jpeg";
+// import gallery6 from "@/assets/img0.jpeg";
+// import gallery6 from "@/assets/img0.jpeg";
+// import gallery6 from "@/assets/img0.jpeg";
+// import gallery6 from "@/assets/img0.jpeg";
+// import gallery6 from "@/assets/img0.jpeg";
+
 
 const images = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
 
