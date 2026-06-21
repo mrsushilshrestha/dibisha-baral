@@ -10,6 +10,26 @@
 // And use the variable name (e.g. myImage) in moodImage field below.
 import blackTurmericImg from "@/assets/black-turmeric.png";
 
+// Gallery Images
+import img0 from "@/assets/img0.jpeg";
+import img01 from "@/assets/img01.jpeg";
+import img1 from "@/assets/img1.jpeg";
+import img2 from "@/assets/img2.jpeg";
+import img3 from "@/assets/img3.jpeg";
+import img4 from "@/assets/img4.jpeg";
+import img5 from "@/assets/img5.jpeg";
+import img6 from "@/assets/img6.jpeg";
+import img7 from "@/assets/img7.jpeg";
+import img8 from "@/assets/img8.jpeg";
+import img9 from "@/assets/img9.jpeg";
+import img10 from "@/assets/img10.jpeg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+
 // =============================================================================
 //  NAVIGATION LINKS
 //  Labels shown in the top navigation bar. href = section ID on the homepage.
@@ -96,24 +116,34 @@ export const researchAreas = [
 // =============================================================================
 //  GALLERY ITEMS
 //  Images shown in the Gallery section.
-//  src: use a URL string OR import a local image and use the variable name.
-//  Leave src as "" to hide the image slot.
+//  image: use a URL string OR import a local image and use the variable name.
 // =============================================================================
 export interface GalleryItem {
   id: number;
-  src: string;
-  title: string;
-  location: string;
-  description: string;
+  image: string;
+  caption?: string;
+  showCaption: boolean;
 }
 
 export const galleryItems: GalleryItem[] = [
-  { id: 1, src: "", title: "#",  location: "#",       description: "#"        },
-  { id: 2, src: "", title: "#",       location: "#", description: "#"                       },
-  { id: 3, src: "", title: "#", location: "#",       description: "#"                 },
-  { id: 4, src: "", title: "#",      location: "#",               description: "#"           },
-  { id: 5, src: "", title: "#",    location: "#",description: "#"             },
-  { id: 6, src: "", title: "#",          location: "#",description: "#"          },
+  { id: 1, image: img0, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 2, image: img01, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 3, image: img1, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 4, image: img2, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 5, image: img3, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 6, image: img4, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 7, image: img5, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 8, image: img6, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 9, image: img7, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 10, image: img8, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 11, image: img9, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 12, image: img10, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 13, image: gallery2, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 12, image: gallery1, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 14, image: gallery3, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  { id: 15, image: gallery4, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  // { id: 16, image: gallery5, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  // { id: 17, image: gallery6, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
 ];
 
 // =============================================================================
