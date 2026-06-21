@@ -12,12 +12,21 @@ interface ImageCardProps {
 const ImageCard = ({ item, onClick, priority }: ImageCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
+
+  const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    setIsLoaded(true);
+    const img = e.currentTarget;
+    if (img.naturalHeight > img.naturalWidth) {
+      setIsPortrait(true);
+    }
+  };
 
   return (
     <motion.button
       onClick={hasError ? undefined : onClick}
       disabled={hasError}
-      className={`group relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-secondary/10 shadow-md hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-accent ${
+      className={`group relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-secondary/5 border border-border shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent ${
         hasError ? "cursor-not-allowed" : ""
       }`}
       whileHover={hasError ? {} : { y: -4 }}
@@ -42,22 +51,34 @@ const ImageCard = ({ item, onClick, priority }: ImageCardProps) => {
           )}
         </div>
       ) : (
-        <img
-          src={item.image}
-          alt={item.caption || "Field Work Gallery Image"}
-          loading={priority ? "eager" : "lazy"}
-          {...({ fetchpriority: priority ? "high" : "low" } as any)}
-          onLoad={() => setIsLoaded(true)}
-          onError={() => setHasError(true)}
-          className={`w-full h-full object-cover transition-transform duration-750 ease-out group-hover:scale-105 ${
-            isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}
-        />
+        <>
+          {/* Blurred backdrop for portrait images to cover grid cards beautifully without crop side effects */}
+          {isPortrait && isLoaded && (
+            <img
+              src={item.image}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover blur-md opacity-45 scale-105 pointer-events-none"
+            />
+          )}
+
+          {/* Actual image */}
+          <img
+            src={item.image}
+            alt={item.caption || "Field Work Gallery Image"}
+            loading={priority ? "eager" : "lazy"}
+            {...({ fetchpriority: priority ? "high" : "low" } as any)}
+            onLoad={handleLoad}
+            onError={() => setHasError(true)}
+            className={`w-full h-full transition-all duration-750 ease-out group-hover:scale-105 ${
+              isPortrait ? "object-contain relative z-10 p-1.5" : "object-cover"
+            } ${isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+          />
+        </>
       )}
 
       {/* Overlay & Caption */}
       {!hasError && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left z-20">
           {item.showCaption && item.caption ? (
             <p className="text-white text-sm font-medium leading-snug transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
               {item.caption}
@@ -82,11 +103,12 @@ const Gallery = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [lightboxLoaded, setLightboxLoaded] = useState(false);
   const [lightboxError, setLightboxError] = useState(false);
+  const [isLightboxPortrait, setIsLightboxPortrait] = useState(false);
   
   const itemsPerPage = 12;
   const totalPages = galleryItems ? Math.ceil(galleryItems.length / itemsPerPage) : 0;
 
-  // Guard against currentPage being out of range (e.g. if galleryItems shrink dynamically)
+  // Guard against currentPage being out of range
   useEffect(() => {
     if (totalPages > 0 && currentPage > totalPages) {
       setCurrentPage(1);
@@ -97,6 +119,7 @@ const Gallery = () => {
   useEffect(() => {
     setLightboxError(false);
     setLightboxLoaded(false);
+    setIsLightboxPortrait(false);
   }, [selected]);
 
   // Keyboard navigation for Lightbox
@@ -233,7 +256,7 @@ const Gallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-md p-4 md:p-8"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
             onClick={() => setSelected(null)}
           >
             {/* Background prefetching for next/previous lightbox images (enhances loading speed) */}
@@ -244,8 +267,8 @@ const Gallery = () => {
 
             {/* Close Button */}
             <button
-              onClick={() => setSelected(null)}
-              className="absolute top-6 right-6 z-50 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 hover:scale-105"
+              onClick={(e) => { e.stopPropagation(); setSelected(null); }}
+              className="absolute top-6 right-6 z-[60] w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all duration-200 hover:scale-105"
               aria-label="Close gallery lightbox"
             >
               <X className="w-5 h-5" />
@@ -275,19 +298,29 @@ const Gallery = () => {
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Image Container with Page Transition and Loading spinner */}
+            {/* Central image container — fills available space, caption overlays on hover */}
+            {/* Note: stopPropagation only on the inner image wrapper, not the full-screen div */}
             <div
-              className="relative max-w-full max-h-[80vh] flex items-center justify-center min-h-[250px] min-w-[250px]"
-              onClick={(e) => e.stopPropagation()}
+              className="group relative w-full h-full flex items-center justify-center z-40 px-16 md:px-24"
             >
+              {/* Loading spinner */}
               {!lightboxLoaded && !lightboxError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40 rounded-xl">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-10 h-10 rounded-full border-4 border-accent border-t-transparent animate-spin" />
                 </div>
               )}
 
+              {/* Blurred background for portrait images */}
+              {isLightboxPortrait && lightboxLoaded && (
+                <img
+                  src={galleryItems[selected].image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-25 scale-110 pointer-events-none"
+                />
+              )}
+
               {lightboxError ? (
-                <div className="flex flex-col items-center justify-center p-8 bg-secondary/15 border border-white/10 rounded-xl max-w-md text-center">
+                <div className="flex flex-col items-center justify-center p-8 bg-secondary/15 border border-white/10 rounded-xl text-center z-10">
                   <ImageOff className="w-12 h-12 text-destructive mb-3" />
                   <h3 className="text-white font-heading text-lg font-semibold">Failed to Load Image</h3>
                   <p className="text-white/60 text-sm mt-1">
@@ -295,36 +328,46 @@ const Gallery = () => {
                   </p>
                 </div>
               ) : (
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={selected}
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.95, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" }}
-                    src={galleryItems[selected].image}
-                    alt={galleryItems[selected].caption || "Gallery Image"}
-                    onLoad={() => setLightboxLoaded(true)}
-                    onError={() => setLightboxError(true)}
-                    className={`max-w-[90vw] max-h-[75vh] object-contain rounded-xl shadow-2xl border border-white/10 transition-opacity duration-300 ${
-                      lightboxLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                </AnimatePresence>
+                <div
+                  className="relative flex items-center justify-center max-w-full max-h-full"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={selected}
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.95, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      src={galleryItems[selected].image}
+                      alt={galleryItems[selected].caption || "Gallery Image"}
+                      onLoad={(e) => {
+                        setLightboxLoaded(true);
+                        const img = e.currentTarget;
+                        if (img.naturalHeight > img.naturalWidth) {
+                          setIsLightboxPortrait(true);
+                        }
+                      }}
+                      onError={() => setLightboxError(true)}
+                      className={`max-w-[calc(100vw-8rem)] md:max-w-[calc(100vw-12rem)] max-h-[90vh] object-contain rounded-xl shadow-2xl border border-white/5 transition-opacity duration-300 relative z-10 ${
+                        lightboxLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </AnimatePresence>
+
+                  {/* Caption overlay — hidden by default, slides in on hover */}
+                  {galleryItems[selected].showCaption && galleryItems[selected].caption && (
+                    <div className="absolute bottom-0 left-0 right-0 z-20 rounded-b-xl overflow-hidden pointer-events-none">
+                      <div
+                        className="px-5 py-3 bg-gradient-to-t from-black/85 to-transparent text-white text-sm md:text-base font-medium text-center leading-relaxed backdrop-blur-[2px] translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out"
+                      >
+                        {galleryItems[selected].caption}
+                      </div>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
-
-            {/* Caption */}
-            {galleryItems[selected].showCaption && galleryItems[selected].caption && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 border border-white/10 px-6 py-3 rounded-full text-white text-center text-sm max-w-[85vw] font-medium shadow-lg backdrop-blur-md"
-              >
-                {galleryItems[selected].caption}
-              </motion.div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>

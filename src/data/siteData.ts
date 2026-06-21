@@ -132,7 +132,7 @@ export const galleryItems: GalleryItem[] = [
   { id: 4, image: img2, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
   { id: 5, image: img3, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
   { id: 6, image: img4, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
-  { id: 7, image: img5, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
+  // { id: 7, image: img5, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
   { id: 8, image: img6, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
   { id: 9, image: img7, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
   { id: 10, image: img8, caption: "Final Year Project: Black Turmeric (Curcuma caesia) Research and Documentation", showCaption: true },
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     description: "A proposed study to extract, characterize, and evaluate the antioxidant, antibacterial, and antidiabetic activities of Curcuma caesia Roxb from Nepalese populations using in vitro, in vivo, and molecular approaches.",
 
     // ★ UPDATE PROGRESS HERE (0–100):
-    progress: 40,
+    progress: 100,
 
     image: "",
 
@@ -266,8 +266,8 @@ export const projects: Project[] = [
       { title: "Proposal Submitted",     date: "2024",       completed: true  },
       { title: "Sample Collection",      date: "2024–2025",  completed: true  },
       { title: "DNA Barcoding",          date: "2025",       completed: true },
-      { title: "Phytochemical Analysis", date: "2025",       completed: false },
-      { title: "In Vivo Study",          date: "2025–2026",  completed: false },
+      { title: "Phytochemical Analysis", date: "2025",       completed: true },
+      { title: "In Vivo Study",          date: "2025–2026",  completed: true },
       
       
     ],
